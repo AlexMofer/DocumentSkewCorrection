@@ -34,7 +34,7 @@ android {
 
 dependencies {
     //noinspection DifferentStdlibGradleVersion
-    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.21') {
+    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0') {
         because('kotlin-stdlib-jdk8 is now a part of kotlin-stdlib')
     }
     implementation 'androidx.appcompat:appcompat:1.7.1'

@@ -35,3 +35,4 @@ dependencies {
 }
 
 //apply from: "maven-central-aar.gradle"
+//apply from: "maven-local-aar.gradle"
