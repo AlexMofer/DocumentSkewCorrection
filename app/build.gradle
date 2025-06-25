@@ -33,16 +33,12 @@ android {
 }
 
 dependencies {
-    //noinspection DifferentStdlibGradleVersion
-    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0') {
-        because('kotlin-stdlib-jdk8 is now a part of kotlin-stdlib')
-    }
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.activity:activity:1.10.1'
     implementation 'androidx.navigation:navigation-fragment:2.9.0'
     implementation 'androidx.exifinterface:exifinterface:1.4.1'
     implementation 'com.google.guava:guava:33.4.8-android'
-    implementation 'io.github.alexmofer.android:support:1.7.0'
+    implementation 'io.github.alexmofer.android:support:1.8.0'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     // Core
