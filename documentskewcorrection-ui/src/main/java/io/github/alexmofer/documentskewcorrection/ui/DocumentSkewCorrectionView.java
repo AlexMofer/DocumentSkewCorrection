@@ -345,38 +345,45 @@ public class DocumentSkewCorrectionView extends AppCompatImageView {
         refreshParams();
         canvas.save();
         canvas.translate(mOffsetX, mOffsetY);
-        mPaint.setColor(mStrokeColor);
-        mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawPath(mPath, mPaint);
-        mPaint.setColor(mFillColor);
-        mPaint.setStyle(Paint.Style.FILL);
-        if (mTouchPoint != POINT_LT) {
-            canvas.drawCircle(mLTX, mLTY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_RT) {
-            canvas.drawCircle(mRTX, mRTY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_RB) {
-            canvas.drawCircle(mRBX, mRBY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_LB) {
-            canvas.drawCircle(mLBX, mLBY, mPointRadius, mPaint);
-        }
-        mPaint.setColor(mStrokeColor);
-        mPaint.setStyle(Paint.Style.STROKE);
-        if (mTouchPoint != POINT_LT) {
-            canvas.drawCircle(mLTX, mLTY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_RT) {
-            canvas.drawCircle(mRTX, mRTY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_RB) {
-            canvas.drawCircle(mRBX, mRBY, mPointRadius, mPaint);
-        }
-        if (mTouchPoint != POINT_LB) {
-            canvas.drawCircle(mLBX, mLBY, mPointRadius, mPaint);
-        }
+        draw(canvas, mPaint, mPath, mLTX, mLTY, mRTX, mRTY, mRBX, mRBY, mLBX, mLBY, mTouchPoint);
         canvas.restore();
+    }
+
+    protected void draw(Canvas canvas, Paint paint, Path path,
+                        float ltx, float lty, float rtx, float rty,
+                        float rbx, float rby, float lbx, float lby,
+                        int touchPoint) {
+        paint.setColor(mStrokeColor);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path, paint);
+        paint.setColor(mFillColor);
+        paint.setStyle(Paint.Style.FILL);
+        if (touchPoint != POINT_LT) {
+            canvas.drawCircle(ltx, lty, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_RT) {
+            canvas.drawCircle(rtx, rty, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_RB) {
+            canvas.drawCircle(rbx, rby, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_LB) {
+            canvas.drawCircle(lbx, lby, mPointRadius, paint);
+        }
+        paint.setColor(mStrokeColor);
+        paint.setStyle(Paint.Style.STROKE);
+        if (touchPoint != POINT_LT) {
+            canvas.drawCircle(ltx, lty, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_RT) {
+            canvas.drawCircle(rtx, rty, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_RB) {
+            canvas.drawCircle(rbx, rby, mPointRadius, paint);
+        }
+        if (touchPoint != POINT_LB) {
+            canvas.drawCircle(lbx, lby, mPointRadius, paint);
+        }
     }
 
     private void refreshParams() {
@@ -470,6 +477,7 @@ public class DocumentSkewCorrectionView extends AppCompatImageView {
             mRBX = mTouchDownPoints[6];
             mRBY = mTouchDownPoints[7];
             refreshPath();
+            onPointsChangedByTouch();
             mTouchPoint = POINT_NONE;
             invalidate();
             dismissMagnifier();
@@ -503,6 +511,7 @@ public class DocumentSkewCorrectionView extends AppCompatImageView {
             mRBX = points[6];
             mRBY = points[7];
             refreshPath();
+            onPointsChangedByTouch();
             invalidate();
         }
         if (action == MotionEvent.ACTION_UP) {
@@ -552,6 +561,12 @@ public class DocumentSkewCorrectionView extends AppCompatImageView {
         mDrawableWidth = 0;
         mDrawableHeight = 0;
         invalidate();
+    }
+
+    /**
+     * 控制点因触摸事件而改变
+     */
+    protected void onPointsChangedByTouch() {
     }
 
     private void refreshPath() {

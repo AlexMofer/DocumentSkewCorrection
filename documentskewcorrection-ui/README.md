@@ -13,7 +13,7 @@ DocumentSkewCorrection-UI
 ```
 dependencies {
     ...
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-ui:1.0.0'
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-ui:1.1.0'
     ...
 }
 ```

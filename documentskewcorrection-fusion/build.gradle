@@ -4,10 +4,10 @@ plugins {
 
 android {
     namespace 'io.github.alexmofer.documentskewcorrection.fusion'
-    compileSdk 36
+    compileSdkVersion 36
 
     defaultConfig {
-        minSdk 24
+        minSdkVersion 24
         consumerProguardFiles "consumer-rules.pro"
     }
 
