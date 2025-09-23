@@ -40,11 +40,11 @@ import java.util.Arrays;
  * Created by Alex on 2025/5/28.
  */
 public class DocumentSkewCorrectionView extends AppCompatImageView {
-    private static final int POINT_NONE = 0;
-    private static final int POINT_LT = 1;
-    private static final int POINT_RT = 2;
-    private static final int POINT_LB = 3;
-    private static final int POINT_RB = 4;
+    protected static final int POINT_NONE = 0;
+    protected static final int POINT_LT = 1;
+    protected static final int POINT_RT = 2;
+    protected static final int POINT_LB = 3;
+    protected static final int POINT_RB = 4;
     private final float[] tPoints = new float[8];
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path mPath = new Path();
