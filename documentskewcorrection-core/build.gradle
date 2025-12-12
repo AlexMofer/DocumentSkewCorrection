@@ -48,7 +48,7 @@ android {
 
 dependencies {
     compileOnly 'androidx.annotation:annotation:1.9.1'
-    compileOnly 'androidx.exifinterface:exifinterface:1.4.1'
+    compileOnly 'androidx.exifinterface:exifinterface:1.4.2'
 }
 
 //apply from: "maven-central-aar.gradle"

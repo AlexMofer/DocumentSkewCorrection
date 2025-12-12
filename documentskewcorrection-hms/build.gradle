@@ -34,7 +34,7 @@ dependencies {
     compileOnly 'com.huawei.hms:ml-computer-vision-documentskew:3.11.0.301'
     compileOnly 'com.huawei.hms:ml-computer-vision-documentskew-model:3.7.0.301'
     compileOnly 'androidx.annotation:annotation:1.9.1'
-    compileOnly 'androidx.exifinterface:exifinterface:1.4.1'
+    compileOnly 'androidx.exifinterface:exifinterface:1.4.2'
 }
 
 //apply from: "maven-central-aar.gradle"
