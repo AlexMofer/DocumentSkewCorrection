@@ -42,7 +42,7 @@ namespace DocumentSkewCorrection {
         static bool detect(int width, int height, void *pixels,
                            int &ltx, int &lty, int &rtx, int &rty,
                            int &lbx, int &lby, int &rbx, int &rby) {
-            // 传入的就是灰度图，直接计算边框
+            // 传入的就是二值化图，直接计算边框
             cv::Mat image = cv::Mat(height, width, CV_8UC1, pixels);
             const bool result = calculateBounds(image, ltx, lty, rtx, rty, lbx, lby, rbx, rby);
             image.release();

@@ -102,7 +102,7 @@ public final class DocumentSkewCorrectionTensorflow extends DocumentSkewCorrecti
         }
         // 创建像素值
         final int[] pixels = new int[scaledWidth * scaledHeight];
-        // 读取位图像素值
+        // 读取位图像素值（空间换时间，一次性拿出会比每次获取快）
         scaled.getPixels(pixels, 0, scaledWidth, 0, 0, scaledWidth, scaledHeight);
         if (scaled != image) {
             scaled.recycle();
