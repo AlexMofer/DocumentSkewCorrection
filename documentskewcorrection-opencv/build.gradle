@@ -3,14 +3,29 @@ plugins {
 }
 
 android {
-    namespace 'io.github.alexmofer.documentskewcorrection.hms'
+    namespace 'io.github.alexmofer.documentskewcorrection.opencv'
     compileSdk {
         version = release(36)
     }
+    ndkVersion '29.0.14206865'
 
     defaultConfig {
         minSdk 26
-        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles 'consumer-rules.pro'
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++11 -frtti -fexceptions'
+                arguments '-DANDROID_STL=c++_shared', '-DOpenCV_DIR=OpenCV-android-sdk/sdk/native/jni'
+//                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+            version '4.1.2'
+        }
     }
 
     compileOptions {
@@ -35,8 +50,6 @@ android {
 dependencies {
     implementation project(path: ':documentskewcorrection-core')
     implementation 'androidx.annotation:annotation:1.9.1'
-    compileOnly 'com.huawei.hms:ml-computer-vision-documentskew:3.11.0.301'
-    compileOnly 'com.huawei.hms:ml-computer-vision-documentskew-model:3.7.0.301'
 }
 
 //apply from: "maven-central-aar.gradle"

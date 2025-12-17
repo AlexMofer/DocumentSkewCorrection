@@ -14,10 +14,10 @@ HMS 中的文档检测与校正
 dependencies {
     ...
     implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.exifinterface:exifinterface:1.4.1'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'
     implementation 'com.huawei.hms:ml-computer-vision-documentskew:3.11.0.301'
     implementation 'com.huawei.hms:ml-computer-vision-documentskew-model:3.7.0.301'
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-hms:1.0.0'
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-hms:2.0.0'
     ...
 }
 ```

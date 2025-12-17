@@ -43,6 +43,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:5.0.5'
     // Core
     implementation project(path: ':documentskewcorrection-core')
+    // OpenCV
+    implementation project(path: ':documentskewcorrection-opencv')
     // TensorFlow
     implementation 'org.tensorflow:tensorflow-lite:2.17.0'
     implementation project(path: ':documentskewcorrection-tensorflow')

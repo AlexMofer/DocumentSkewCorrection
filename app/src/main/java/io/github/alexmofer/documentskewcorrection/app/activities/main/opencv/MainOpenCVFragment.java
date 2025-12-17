@@ -1,4 +1,4 @@
-package io.github.alexmofer.documentskewcorrection.app.activities.main.hms;
+package io.github.alexmofer.documentskewcorrection.app.activities.main.opencv;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,10 +11,10 @@ import io.github.alexmofer.documentskewcorrection.app.activities.main.dc.MainDCF
 import io.github.alexmofer.documentskewcorrection.app.activities.main.dc.MainDCViewModel;
 
 /**
- * HMS 示范
- * Created by Alex on 2025/5/27.
+ * Core 示范
+ * Created by Alex on 2025/5/26.
  */
-public class MainHMSFragment extends MainDCFragment {
+public class MainOpenCVFragment extends MainDCFragment {
 
     public static void navigate(Fragment fragment) {
         final NavController controller;
@@ -23,17 +23,17 @@ public class MainHMSFragment extends MainDCFragment {
         } catch (Exception e) {
             return;
         }
-        controller.navigate(R.id.main_action_root_to_hms);
+        controller.navigate(R.id.main_action_root_to_core);
     }
 
     @NonNull
     @Override
     protected MainDCViewModel onCreateViewModel() {
-        return new ViewModelProvider(this).get(MainHMSViewModel.class);
+        return new ViewModelProvider(this).get(MainOpenCVViewModel.class);
     }
 
     @Override
     protected CharSequence getTitle() {
-        return "HMS 示范";
+        return "OpenCV 示范";
     }
 }

@@ -1,10 +1,10 @@
-DocumentSkewCorrection-UI
+DocumentSkewCorrection-Core
 =========
 
 介绍
 ---
 
-提供修改校正点的ImageView
+基于 OpenCV 4.12.0 版本实现的文档检测与校正。
 
 使用
 ---
@@ -13,7 +13,9 @@ DocumentSkewCorrection-UI
 ```
 dependencies {
     ...
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-ui:2.0.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:4.12.0'
     ...
 }
 ```

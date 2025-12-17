@@ -15,7 +15,7 @@
         app:navigationIcon="?homeAsUpIndicator"
         app:title="UI 示范" />
 
-    <io.github.alexmofer.documentskewcorrection.ui.DocumentSkewCorrectionView
+    <io.github.alexmofer.documentskewcorrection.DocumentSkewCorrectionView
         android:id="@+id/fmu_v_correction"
         android:layout_width="match_parent"
         android:layout_height="0dp"

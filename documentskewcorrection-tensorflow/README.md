@@ -4,7 +4,7 @@ DocumentSkewCorrection-TensorFlow
 介绍
 ---
 
-使用 TensorFlow 模型代理位图处理
+基于 OpenCV 4.12.0 版本，使用 TensorFlow 模型代理位图处理
 
 使用
 ---
@@ -14,9 +14,9 @@ DocumentSkewCorrection-TensorFlow
 dependencies {
     ...
     implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.exifinterface:exifinterface:1.4.1'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'
     implementation 'org.tensorflow:tensorflow-lite:2.9.0'
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-tensorflow:1.0.0'
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-tensorflow:2.0.0'
     ...
 }
 ```

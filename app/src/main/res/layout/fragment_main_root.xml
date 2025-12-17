@@ -11,16 +11,16 @@
         android:padding="32dp">
 
         <Button
-            android:id="@+id/fmr_v_core"
+            android:id="@+id/fmr_v_opencv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Core 示范" />
+            android:text="OpenCV 示范" />
 
         <Button
             android:id="@+id/fmr_v_tensorflow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tensorflow 代理位图处理 示范" />
+            android:text="Tensorflow 代理 OpenCV 位图处理 示范" />
 
         <Button
             android:id="@+id/fmr_v_hms"

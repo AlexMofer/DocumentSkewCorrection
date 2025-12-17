@@ -26,18 +26,18 @@
 
     <fragment
         android:id="@+id/main_fragment_core"
-        android:name="io.github.alexmofer.documentskewcorrection.app.activities.main.core.MainCoreFragment"
-        tools:layout="@layout/fragment_main_auto" />
+        android:name="io.github.alexmofer.documentskewcorrection.app.activities.main.opencv.MainOpenCVFragment"
+        tools:layout="@layout/fragment_main_dc" />
 
     <fragment
         android:id="@+id/main_fragment_tensorflow"
         android:name="io.github.alexmofer.documentskewcorrection.app.activities.main.tensorflow.MainTensorflowFragment"
-        tools:layout="@layout/fragment_main_auto" />
+        tools:layout="@layout/fragment_main_dc" />
 
     <fragment
         android:id="@+id/main_fragment_hms"
         android:name="io.github.alexmofer.documentskewcorrection.app.activities.main.hms.MainHMSFragment"
-        tools:layout="@layout/fragment_main_auto" />
+        tools:layout="@layout/fragment_main_dc" />
 
     <fragment
         android:id="@+id/main_fragment_ui"

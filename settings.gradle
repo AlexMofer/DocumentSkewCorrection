@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 rootProject.name = 'DocumentSkewCorrection'
 include ':app'
 include ':documentskewcorrection-core'
+include ':documentskewcorrection-opencv'
 include ':documentskewcorrection-tensorflow'
-include ':documentskewcorrection-fusion'
 include ':documentskewcorrection-hms'
 include ':documentskewcorrection-ui'

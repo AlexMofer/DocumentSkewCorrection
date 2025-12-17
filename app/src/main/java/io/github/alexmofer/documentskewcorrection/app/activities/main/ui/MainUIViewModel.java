@@ -15,10 +15,11 @@ import java.util.UUID;
 import io.github.alexmofer.android.support.other.StringResource;
 import io.github.alexmofer.android.support.other.StringResourceException;
 import io.github.alexmofer.android.support.utils.ContextUtils;
+import io.github.alexmofer.documentskewcorrection.DocumentSkewCorrectionOpenCV;
+import io.github.alexmofer.documentskewcorrection.DocumentSkewCorrectionPoints;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.common.MainCommonViewModel;
 import io.github.alexmofer.documentskewcorrection.app.concurrent.ListenableFutureHelper;
 import io.github.alexmofer.documentskewcorrection.app.utils.FileProviderUtils;
-import io.github.alexmofer.documentskewcorrection.core.DocumentSkewCorrectionCore;
 
 /**
  * ViewModel
@@ -26,7 +27,7 @@ import io.github.alexmofer.documentskewcorrection.core.DocumentSkewCorrectionCor
  */
 public class MainUIViewModel extends MainCommonViewModel {
     private final MutableLiveData<Uri> mOriginal = new MutableLiveData<>();
-    private final MutableLiveData<float[]> mPoints = new MutableLiveData<>();
+    private final MutableLiveData<DocumentSkewCorrectionPoints> mPoints = new MutableLiveData<>();
     private final MutableLiveData<Uri> mCorrected = new MutableLiveData<>();
     private final MutableLiveData<StringResource> mFailure = new MutableLiveData<>();
 
@@ -34,7 +35,7 @@ public class MainUIViewModel extends MainCommonViewModel {
         return mOriginal;
     }
 
-    LiveData<float[]> getPoints() {
+    LiveData<DocumentSkewCorrectionPoints> getPoints() {
         return mPoints;
     }
 
@@ -60,8 +61,10 @@ public class MainUIViewModel extends MainCommonViewModel {
         mPoints.setValue(null);
         setProcessing(true);
         ListenableFutureHelper.submit(() -> {
-            final float[] points = DocumentSkewCorrectionCore.detect(context, uri);
-            if (points == null) {
+            final DocumentSkewCorrectionPoints points = new DocumentSkewCorrectionPoints();
+            final boolean detected =
+                    DocumentSkewCorrectionOpenCV.getInstance().detect(context, uri, points);
+            if (!detected) {
                 throw new StringResourceException("检测不到文档边框，请选择其他图片");
             }
             return points;
@@ -74,7 +77,7 @@ public class MainUIViewModel extends MainCommonViewModel {
         });
     }
 
-    void correct(Context context, float[] points) {
+    void correct(Context context, DocumentSkewCorrectionPoints points) {
         final Uri uri = mOriginal.getValue();
         if (uri == null) {
             mFailure.setValue(new StringResource("点击右上角菜单选择一张图片进行处理"));
@@ -87,7 +90,8 @@ public class MainUIViewModel extends MainCommonViewModel {
         setProcessing(true);
         mCorrected.setValue(null);
         ListenableFutureHelper.submit(() -> {
-            final Bitmap corrected = DocumentSkewCorrectionCore.correct(context, uri, points);
+            final Bitmap corrected =
+                    DocumentSkewCorrectionOpenCV.getInstance().correct(context, uri, points);
             if (corrected == null) {
                 throw new StringResourceException("文档校正失败");
             }

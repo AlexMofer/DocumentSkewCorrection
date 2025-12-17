@@ -13,33 +13,37 @@ import java.util.UUID;
 
 import io.github.alexmofer.android.support.other.StringResourceException;
 import io.github.alexmofer.android.support.utils.ContextUtils;
-import io.github.alexmofer.documentskewcorrection.app.activities.main.auto.MainAutoViewModel;
+import io.github.alexmofer.documentskewcorrection.DocumentSkewCorrectionHMS;
+import io.github.alexmofer.documentskewcorrection.DocumentSkewCorrectionPoints;
+import io.github.alexmofer.documentskewcorrection.app.activities.main.dc.MainDCViewModel;
 import io.github.alexmofer.documentskewcorrection.app.utils.FileProviderUtils;
-import io.github.alexmofer.documentskewcorrection.hms.DocumentSkewCorrectionHMS;
 
 /**
  * ViewModel
  * Created by Alex on 2025/5/27.
  */
-public class MainHMSViewModel extends MainAutoViewModel {
+public class MainHMSViewModel extends MainDCViewModel {
     @Override
     @NonNull
     protected Uri handleImageInBackground(Context context, @NonNull Uri uri) throws Exception {
         // 可用性检查
-        if (!DocumentSkewCorrectionHMS.isEnable(context)) {
-            // 设备不支持
-            throw new StringResourceException("设备不支持");
-        }
+//        if (!DocumentSkewCorrectionHMS.isEnable(context)) {
+//            // 设备不支持
+//            throw new StringResourceException("设备不支持");
+//        }
         // 检测
         this.notifyDetectStart();
-        final float[] points = DocumentSkewCorrectionHMS.detect(context, uri);
+        final DocumentSkewCorrectionPoints points = new DocumentSkewCorrectionPoints();
+        final boolean detected =
+                DocumentSkewCorrectionHMS.getInstance().detect(context, uri, points);
         this.notifyDetectEnd();
-        if (points == null) {
+        if (!detected) {
             throw new StringResourceException("检测不到文档边框，请选择其他图片");
         }
         // 校正
         this.notifyCorrectStart();
-        final Bitmap corrected = DocumentSkewCorrectionHMS.correct(context, uri, points);
+        final Bitmap corrected =
+                DocumentSkewCorrectionHMS.getInstance().correct(context, uri, points);
         this.notifyCorrectEnd();
         if (corrected == null) {
             throw new StringResourceException("文档校正失败");

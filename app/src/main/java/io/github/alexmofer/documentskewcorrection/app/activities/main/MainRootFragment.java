@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import io.github.alexmofer.android.support.widget.AvoidArea;
-import io.github.alexmofer.documentskewcorrection.app.activities.main.core.MainCoreFragment;
+import io.github.alexmofer.documentskewcorrection.app.activities.main.opencv.MainOpenCVFragment;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.hms.MainHMSFragment;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.tensorflow.MainTensorflowFragment;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.ui.MainUIFragment;
@@ -29,7 +29,7 @@ public class MainRootFragment extends Fragment {
         final FragmentMainRootBinding binding =
                 FragmentMainRootBinding.inflate(getLayoutInflater(), container, false);
         AvoidArea.paddingAll(binding.fmrVContent);
-        binding.fmrVCore.setOnClickListener(v -> MainCoreFragment.navigate(this));
+        binding.fmrVOpencv.setOnClickListener(v -> MainOpenCVFragment.navigate(this));
         binding.fmrVTensorflow.setOnClickListener(v -> MainTensorflowFragment.navigate(this));
         binding.fmrVHms.setOnClickListener(v -> MainHMSFragment.navigate(this));
         binding.fmrVUi.setOnClickListener(v -> MainUIFragment.navigate(this));
