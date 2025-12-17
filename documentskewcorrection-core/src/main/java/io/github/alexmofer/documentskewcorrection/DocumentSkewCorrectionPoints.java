@@ -72,7 +72,7 @@ public final class DocumentSkewCorrectionPoints {
                                    float lbx, float lby, float rbx, float rby) {
         if (controlPoint == POINT_LT) {
             // 变更左上点
-            // 情况1：LT与LB连线与RT与RB连线出现焦点，LT与RT互换
+            // 情况1：LT与LB连线与RT与RB连线出现交点，LT与RT互换
             final boolean intersect1 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, lbx, lby, rtx, rty, rbx, rby);
             if (intersect1) {
@@ -87,7 +87,7 @@ public final class DocumentSkewCorrectionPoints {
                 points[7] = rby;
                 return POINT_RT;
             }
-            // 情况2：LT与RT连线与LB与RB连续出现焦点，LT与LB互换
+            // 情况2：LT与RT连线与LB与RB连续出现交点，LT与LB互换
             final boolean intersect2 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, rtx, rty, lbx, lby, rbx, rby);
             if (intersect2) {
@@ -119,7 +119,7 @@ public final class DocumentSkewCorrectionPoints {
             }
         } else if (controlPoint == POINT_RT) {
             // 变更右上点
-            // 情况1：LT与LB连线与RT与RB连线出现焦点，RT与LT互换
+            // 情况1：LT与LB连线与RT与RB连线出现交点，RT与LT互换
             final boolean intersect1 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, lbx, lby, rtx, rty, rbx, rby);
             if (intersect1) {
@@ -134,7 +134,7 @@ public final class DocumentSkewCorrectionPoints {
                 points[7] = rby;
                 return POINT_LT;
             }
-            // 情况2：LT与RT连线与LB与RB连续出现焦点，RT与RB互换
+            // 情况2：LT与RT连线与LB与RB连续出现交点，RT与RB互换
             final boolean intersect2 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, rtx, rty, lbx, lby, rbx, rby);
             if (intersect2) {
@@ -166,7 +166,7 @@ public final class DocumentSkewCorrectionPoints {
             }
         } else if (controlPoint == POINT_LB) {
             // 变更左下点
-            // 情况1：LT与LB连线与RT与RB连线出现焦点，LB与RB互换
+            // 情况1：LT与LB连线与RT与RB连线出现交点，LB与RB互换
             final boolean intersect1 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, lbx, lby, rtx, rty, rbx, rby);
             if (intersect1) {
@@ -181,7 +181,7 @@ public final class DocumentSkewCorrectionPoints {
                 points[7] = lby;
                 return POINT_RB;
             }
-            // 情况2：LT与RT连线与LB与RB连续出现焦点，LB与LT互换
+            // 情况2：LT与RT连线与LB与RB连续出现交点，LB与LT互换
             final boolean intersect2 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, rtx, rty, lbx, lby, rbx, rby);
             if (intersect2) {
@@ -213,7 +213,7 @@ public final class DocumentSkewCorrectionPoints {
             }
         } else if (controlPoint == POINT_RB) {
             // 变更右下点
-            // 情况1：LT与LB连线与RT与RB连线出现焦点，RB与LB互换
+            // 情况1：LT与LB连线与RT与RB连线出现交点，RB与LB互换
             final boolean intersect1 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, lbx, lby, rtx, rty, rbx, rby);
             if (intersect1) {
@@ -228,7 +228,7 @@ public final class DocumentSkewCorrectionPoints {
                 points[7] = lby;
                 return POINT_LB;
             }
-            // 情况2：LT与RT连线与LB与RB连续出现焦点，RB与RT互换
+            // 情况2：LT与RT连线与LB与RB连续出现交点，RB与RT互换
             final boolean intersect2 = Utils.isIntersectLineSegmentToLineSegment(
                     ltx, lty, rtx, rty, lbx, lby, rbx, rby);
             if (intersect2) {
