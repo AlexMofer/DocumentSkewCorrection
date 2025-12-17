@@ -16,7 +16,6 @@ android {
             cmake {
                 cppFlags '-std=c++11 -frtti -fexceptions'
                 arguments '-DANDROID_STL=c++_shared', '-DOpenCV_DIR=OpenCV-android-sdk/sdk/native/jni'
-//                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
             }
         }
     }
@@ -48,8 +47,9 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':documentskewcorrection-core')
-    implementation 'androidx.annotation:annotation:1.9.1'
+    compileOnly 'androidx.annotation:annotation:1.9.1'
+    api project(path: ':documentskewcorrection-core')
+//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.0.0'
 }
 
 //apply from: "maven-central-aar.gradle"

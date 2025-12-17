@@ -13,8 +13,7 @@ DocumentSkewCorrection-Core
 ```
 dependencies {
     ...
-    implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.exifinterface:exifinterface:1.4.2'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'// 需要位图从文件读取时增加该支持库
     implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.0.0'
     ...
 }

@@ -13,8 +13,7 @@ DocumentSkewCorrection-TensorFlow
 ```
 dependencies {
     ...
-    implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.exifinterface:exifinterface:1.4.2'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'// 需要位图从文件读取时增加该支持库
     implementation 'org.tensorflow:tensorflow-lite:2.9.0'
     implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-tensorflow:2.0.0'
     ...

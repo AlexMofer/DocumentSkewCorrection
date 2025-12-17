@@ -26,11 +26,6 @@ public class MainHMSViewModel extends MainDCViewModel {
     @Override
     @NonNull
     protected Uri handleImageInBackground(Context context, @NonNull Uri uri) throws Exception {
-        // 可用性检查
-//        if (!DocumentSkewCorrectionHMS.isEnable(context)) {
-//            // 设备不支持
-//            throw new StringResourceException("设备不支持");
-//        }
         // 检测
         this.notifyDetectStart();
         final DocumentSkewCorrectionPoints points = new DocumentSkewCorrectionPoints();

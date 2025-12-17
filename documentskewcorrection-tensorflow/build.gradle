@@ -33,12 +33,11 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':documentskewcorrection-core')
-    implementation project(path: ':documentskewcorrection-opencv')
-//    compileOnly 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:4.11.0'
     implementation 'androidx.annotation:annotation:1.9.1'
     compileOnly 'org.tensorflow:tensorflow-lite:2.17.0'
+    api project(path: ':documentskewcorrection-opencv')
+//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-opencv:4.12.0'
 }
 
 //apply from: "maven-central-aar.gradle"
-//apply from: "maven-local-aar.gradle"
+apply from: "maven-local-aar.gradle"

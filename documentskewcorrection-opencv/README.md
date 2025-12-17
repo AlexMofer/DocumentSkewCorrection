@@ -1,4 +1,4 @@
-DocumentSkewCorrection-Core
+DocumentSkewCorrection-OpenCV
 =========
 
 介绍
@@ -13,9 +13,8 @@ DocumentSkewCorrection-Core
 ```
 dependencies {
     ...
-    implementation 'androidx.annotation:annotation:1.9.1'
-    implementation 'androidx.exifinterface:exifinterface:1.4.2'
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:4.12.0'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'// 需要位图从文件读取时增加该支持库
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-opencv:4.12.0'
     ...
 }
 ```
