@@ -49,7 +49,7 @@ android {
 dependencies {
     compileOnly 'androidx.annotation:annotation:1.9.1'
     api project(path: ':documentskewcorrection-core')
-//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.0.0'
+//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.1.0'
 }
 
 //apply from: "maven-central-aar.gradle"

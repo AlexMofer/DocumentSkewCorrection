@@ -29,7 +29,9 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.Magnifier;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.util.TypedValueCompat;
 
@@ -349,6 +351,58 @@ public class DocumentSkewCorrectionView extends AppCompatImageView {
         // 置0用于刷新参数
         mDrawableWidth = 0;
         mDrawableHeight = 0;
+        invalidate();
+    }
+
+    /**
+     * 设置充填色
+     *
+     * @param color 颜色
+     */
+    public void setFillColor(@ColorInt int color) {
+        if (mFillColor == color) {
+            return;
+        }
+        mFillColor = color;
+        invalidate();
+    }
+
+    /**
+     * 设置描边色
+     *
+     * @param color 描边色
+     */
+    public void setStrokeColor(@ColorInt int color) {
+        if (mStrokeColor == color) {
+            return;
+        }
+        mStrokeColor = color;
+        invalidate();
+    }
+
+    /**
+     * 设置控制点绘制半径
+     *
+     * @param radius 控制点绘制半径
+     */
+    public void setPointRadius(@Px int radius) {
+        if (mPointRadius == radius) {
+            return;
+        }
+        mPointRadius = radius;
+        invalidate();
+    }
+
+    /**
+     * 设置描边线宽
+     *
+     * @param width 描边线宽
+     */
+    public void setStrokeWidth(@Px float width) {
+        if (mPaint.getStrokeWidth() == width) {
+            return;
+        }
+        mPaint.setStrokeWidth(width);
         invalidate();
     }
 

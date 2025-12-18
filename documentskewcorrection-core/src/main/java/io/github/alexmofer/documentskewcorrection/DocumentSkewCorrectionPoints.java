@@ -36,6 +36,10 @@ public final class DocumentSkewCorrectionPoints {
     public DocumentSkewCorrectionPoints() {
     }
 
+    public DocumentSkewCorrectionPoints(int width, int height) {
+        set(width, height);
+    }
+
     public DocumentSkewCorrectionPoints(int width, int height,
                                         float ltx, float lty, float rtx, float rty,
                                         float lbx, float lby, float rbx, float rby) {
@@ -273,6 +277,10 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = 0;
         mPoints[6] = 0;
         mPoints[7] = 0;
+    }
+
+    public void set(int width, int height) {
+        set(width, height, 0, 0, width, 0, 0, height, width, height);
     }
 
     public void set(int width, int height,
