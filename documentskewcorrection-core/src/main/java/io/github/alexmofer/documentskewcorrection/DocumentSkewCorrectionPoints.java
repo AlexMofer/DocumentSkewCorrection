@@ -32,28 +32,19 @@ public final class DocumentSkewCorrectionPoints {
     private final float[] mPoints = new float[8];
     private int mWidth;
     private int mHeight;
-    private boolean mSet;
 
     public DocumentSkewCorrectionPoints() {
     }
 
-    DocumentSkewCorrectionPoints(int width, int height,
-                                 float ltx, float lty, float rtx, float rty,
-                                 float lbx, float lby, float rbx, float rby) {
-        mPoints[0] = ltx;
-        mPoints[1] = lty;
-        mPoints[2] = rtx;
-        mPoints[3] = rty;
-        mPoints[4] = lbx;
-        mPoints[5] = lby;
-        mPoints[6] = rbx;
-        mPoints[7] = rby;
-        mWidth = width;
-        mHeight = height;
-        mSet = true;
+    public DocumentSkewCorrectionPoints(int width, int height,
+                                        float ltx, float lty, float rtx, float rty,
+                                        float lbx, float lby, float rbx, float rby) {
+        set(width, height, ltx, lty, rtx, rty, lbx, lby, rbx, rby);
     }
 
-    DocumentSkewCorrectionPoints(DocumentSkewCorrectionPoints points) {
+    public DocumentSkewCorrectionPoints(DocumentSkewCorrectionPoints points) {
+        mWidth = points.mWidth;
+        mHeight = points.mHeight;
         mPoints[0] = points.mPoints[0];
         mPoints[1] = points.mPoints[1];
         mPoints[2] = points.mPoints[2];
@@ -62,14 +53,11 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = points.mPoints[5];
         mPoints[6] = points.mPoints[6];
         mPoints[7] = points.mPoints[7];
-        mWidth = points.mWidth;
-        mHeight = points.mHeight;
-        mSet = points.mSet;
     }
 
     static int adjustPoints(float[] points, int controlPoint, int w, int h,
-                                   float ltx, float lty, float rtx, float rty,
-                                   float lbx, float lby, float rbx, float rby) {
+                            float ltx, float lty, float rtx, float rty,
+                            float lbx, float lby, float rbx, float rby) {
         if (controlPoint == POINT_LT) {
             // 变更左上点
             // 情况1：LT与LB连线与RT与RB连线出现交点，LT与RT互换
@@ -285,10 +273,24 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = 0;
         mPoints[6] = 0;
         mPoints[7] = 0;
-        mSet = false;
     }
 
-    void set(int width, int height, int[] ps) {
+    public void set(int width, int height,
+                    float ltx, float lty, float rtx, float rty,
+                    float lbx, float lby, float rbx, float rby) {
+        mWidth = width;
+        mHeight = height;
+        mPoints[0] = ltx;
+        mPoints[1] = lty;
+        mPoints[2] = rtx;
+        mPoints[3] = rty;
+        mPoints[4] = lbx;
+        mPoints[5] = lby;
+        mPoints[6] = rbx;
+        mPoints[7] = rby;
+    }
+
+    public void set(int width, int height, int[] ps) {
         mWidth = width;
         mHeight = height;
         mPoints[0] = ps[0];
@@ -299,10 +301,10 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = ps[5];
         mPoints[6] = ps[6];
         mPoints[7] = ps[7];
-        mSet = true;
     }
 
-    void set(int width, int height, Point lt, Point rt,  Point lb, Point rb) {
+    public void set(int width, int height,
+                    Point lt, Point rt, Point lb, Point rb) {
         mWidth = width;
         mHeight = height;
         mPoints[0] = lt.x;
@@ -313,11 +315,10 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = lb.y;
         mPoints[6] = rb.x;
         mPoints[7] = rb.y;
-        mSet = true;
     }
 
-    void set(int originalWidth, int originalHeight,
-             int scaledWidth, int scaledHeight, int[] ps) {
+    public void set(int originalWidth, int originalHeight,
+                    int scaledWidth, int scaledHeight, int[] ps) {
         mWidth = originalWidth;
         mHeight = originalHeight;
         mPoints[0] = 1f * ps[0] / scaledWidth * originalWidth;
@@ -328,11 +329,10 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = 1f * ps[5] / scaledHeight * originalHeight;
         mPoints[6] = 1f * ps[6] / scaledWidth * originalWidth;
         mPoints[7] = 1f * ps[7] / scaledHeight * originalHeight;
-        mSet = true;
     }
 
-    void set(int originalWidth, int originalHeight, int scaledWidth, int scaledHeight,
-             Point lt, Point rt,  Point lb, Point rb) {
+    public void set(int originalWidth, int originalHeight, int scaledWidth, int scaledHeight,
+                    Point lt, Point rt, Point lb, Point rb) {
         mWidth = originalWidth;
         mHeight = originalHeight;
         mPoints[0] = 1f * lt.x / scaledWidth * originalWidth;
@@ -343,7 +343,6 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[5] = 1f * lb.y / scaledHeight * originalHeight;
         mPoints[6] = 1f * rb.x / scaledWidth * originalWidth;
         mPoints[7] = 1f * rb.y / scaledHeight * originalHeight;
-        mSet = true;
     }
 
     /**
@@ -424,7 +423,7 @@ public final class DocumentSkewCorrectionPoints {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         DocumentSkewCorrectionPoints that = (DocumentSkewCorrectionPoints) o;
-        return mWidth == that.mWidth && mHeight == that.mHeight && mSet == that.mSet
+        return mWidth == that.mWidth && mHeight == that.mHeight
                 && Objects.deepEquals(mPoints, that.mPoints);
     }
 }
