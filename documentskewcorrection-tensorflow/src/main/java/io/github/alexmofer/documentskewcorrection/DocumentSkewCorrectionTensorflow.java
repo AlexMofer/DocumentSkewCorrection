@@ -109,7 +109,7 @@ public final class DocumentSkewCorrectionTensorflow extends DocumentSkewCorrecti
         }
         // 创建输入
         final ByteBuffer input = ByteBuffer.allocateDirect(
-                scaledWidth * scaledHeight * 3 * Float.SIZE / Byte.SIZE);
+                3 * Float.SIZE / Byte.SIZE * scaledWidth * scaledHeight);
         input.order(ByteOrder.nativeOrder());
         input.clear();
         input.rewind();
@@ -121,13 +121,13 @@ public final class DocumentSkewCorrectionTensorflow extends DocumentSkewCorrecti
         }
         // 创建输出
         final ByteBuffer output = ByteBuffer.allocateDirect(
-                scaledWidth * scaledHeight * Float.SIZE / Byte.SIZE);
+                Float.SIZE / Byte.SIZE * scaledWidth * scaledHeight);
         output.order(ByteOrder.nativeOrder());
         output.clear();
-        // 处理
+        // 处理为灰度图
         mInterpreter.run(input, output);
-        // 读取输出，并进行二值化
         output.rewind();
+        // 读取输出，并进行二值化
         final byte[] ps = new byte[scaledWidth * scaledHeight];
         for (int i = 0; i < ps.length; i++) {
             if (output.getFloat() > 0.2) {

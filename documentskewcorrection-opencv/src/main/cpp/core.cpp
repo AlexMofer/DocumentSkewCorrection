@@ -42,10 +42,10 @@ static jboolean DocumentSkewCorrection_OpenCVUtils_detect(JNIEnv *env, jclass /*
     return JNI_FALSE;
 }
 
-static jboolean DocumentSkewCorrection_OpenCVUtils_detectGary(JNIEnv *env, jclass /*clazz*/,
-                                                              jint width, jint height,
-                                                              jbyteArray pixels,
-                                                              jintArray points) {
+static jboolean DocumentSkewCorrection_OpenCVUtils_detectThreshold(JNIEnv *env, jclass /*clazz*/,
+                                                                   jint width, jint height,
+                                                                   jbyteArray pixels,
+                                                                   jintArray points) {
     jbyte *data = env->GetByteArrayElements(pixels, JNI_FALSE);
     int ltx, lty, rtx, rty, lbx, lby, rbx, rby;
     const bool result = DocumentSkewCorrection::OpenCVUtils::detect(
@@ -125,9 +125,9 @@ jint DocumentSkewCorrection_OpenCVUtils_RegisterNatives(JNIEnv *env) {
         return JNI_ERR;
     }
     JNINativeMethod methods[] = {
-            {"DocumentSkewCorrection_OpenCVUtils_detect",     "(Landroid/graphics/Bitmap;[I)Z",                                (void *) (DocumentSkewCorrection_OpenCVUtils_detect)},
-            {"DocumentSkewCorrection_OpenCVUtils_detectGary", "(II[B[I)Z",                                                     (void *) (DocumentSkewCorrection_OpenCVUtils_detectGary)},
-            {"DocumentSkewCorrection_OpenCVUtils_correct",    "(Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;FFFFFFFF)Z", (void *) (DocumentSkewCorrection_OpenCVUtils_correct)}
+            {"DocumentSkewCorrection_OpenCVUtils_detect",          "(Ljava/lang/Object;[I)Z",                         (void *) (DocumentSkewCorrection_OpenCVUtils_detect)},
+            {"DocumentSkewCorrection_OpenCVUtils_detectThreshold", "(II[B[I)Z",                                       (void *) (DocumentSkewCorrection_OpenCVUtils_detectThreshold)},
+            {"DocumentSkewCorrection_OpenCVUtils_correct",         "(Ljava/lang/Object;Ljava/lang/Object;FFFFFFFF)Z", (void *) (DocumentSkewCorrection_OpenCVUtils_correct)}
     };
     const jint result = env->RegisterNatives(clazz, methods, sizeof(methods) / sizeof(methods[0]));
     env->DeleteLocalRef(clazz);

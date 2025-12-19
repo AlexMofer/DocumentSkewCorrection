@@ -27,6 +27,7 @@ namespace DocumentSkewCorrection {
                 cv::cvtColor(temp, image, cv::COLOR_BGR5652GRAY);
                 temp.release();
             }
+            // 检测
             if (detect(image, ltx, lty, rtx, rty, lbx, lby, rbx, rby)) {
                 image.release();
                 return true;

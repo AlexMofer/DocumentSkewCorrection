@@ -113,7 +113,7 @@ final class OpenCVUtils {
      * @param originalHeight 位图原始高度
      * @param width          位图宽度
      * @param height         位图高度
-     * @param pixels         位图灰度像素 每个值为0或者1
+     * @param pixels         临界处理后的位图
      * @param points         保存检测到的检测点
      * @return 检测到文档时返回 true
      */
@@ -127,7 +127,7 @@ final class OpenCVUtils {
             return false;
         }
         final int[] ps = new int[8];
-        if (DocumentSkewCorrection_OpenCVUtils_detectGary(width, height, pixels, ps)) {
+        if (DocumentSkewCorrection_OpenCVUtils_detectThreshold(width, height, pixels, ps)) {
             points.set(originalWidth, originalHeight, width, height, ps);
             return true;
         }
@@ -208,12 +208,11 @@ final class OpenCVUtils {
                 points.getRBX(width), points.getRBY(height));
     }
 
-    private static native boolean DocumentSkewCorrection_OpenCVUtils_detect(Bitmap src, int[] points);
+    private static native boolean DocumentSkewCorrection_OpenCVUtils_detect(Object src, int[] points);
 
-    private static native boolean DocumentSkewCorrection_OpenCVUtils_detectGary(int width, int height, byte[] pixels,
-                                                                                int[] points);
+    private static native boolean DocumentSkewCorrection_OpenCVUtils_detectThreshold(int width, int height, byte[] pixels, int[] points);
 
-    private static native boolean DocumentSkewCorrection_OpenCVUtils_correct(Bitmap src, Bitmap dst,
+    private static native boolean DocumentSkewCorrection_OpenCVUtils_correct(Object src, Object dst,
                                                                              float ltx, float lty, float rtx, float rty,
                                                                              float lbx, float lby, float rbx, float rby);
 }
