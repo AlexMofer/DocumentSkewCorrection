@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,7 +18,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
 import io.github.alexmofer.android.support.other.StringResource;
-import io.github.alexmofer.android.support.widget.AvoidArea;
+import io.github.alexmofer.android.support.window.AvoidAreaCalculator;
+import io.github.alexmofer.android.support.window.AvoidAreaCalculatorViewModel;
 import io.github.alexmofer.documentskewcorrection.app.R;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.common.MainCommonFragment;
 import io.github.alexmofer.documentskewcorrection.app.databinding.FragmentMainUiBinding;
@@ -50,8 +52,13 @@ public class MainUIFragment extends MainCommonFragment<MainUIViewModel> {
                              @Nullable Bundle savedInstanceState) {
         final FragmentMainUiBinding binding =
                 FragmentMainUiBinding.inflate(getLayoutInflater(), container, false);
-        AvoidArea.paddingIgnoreBottom(binding.fmuVToolbar);
-        AvoidArea.paddingIgnoreTop(binding.fmuVContent);
+        final AvoidAreaCalculator calculator =
+                AvoidAreaCalculatorViewModel.getInstance(requireActivity()).getCalculator();
+        calculator.calculate(getViewLifecycleOwner(), WindowInsetsCompat.Type.systemBars(),
+                AvoidAreaCalculator.ALL, (start, top, end, bottom) -> {
+                    binding.fmuVToolbar.setPadding(start, top, end, 0);
+                    binding.fmuVContent.setPadding(start, 0, end, bottom);
+                });
         binding.fmuVToolbar.setNavigationOnClickListener(
                 v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
         binding.fmuVToolbar.setOnMenuItemClickListener(newOnMenuItemClickListener());

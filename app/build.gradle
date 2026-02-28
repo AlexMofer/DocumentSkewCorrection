@@ -34,11 +34,11 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.activity:activity:1.12.1'
-    implementation 'androidx.navigation:navigation-fragment:2.9.6'
+    implementation 'androidx.activity:activity:1.12.4'
+    implementation 'androidx.navigation:navigation-fragment:2.9.7'
     implementation 'androidx.exifinterface:exifinterface:1.4.2'
     implementation 'com.google.guava:guava:33.5.0-android'
-    implementation 'io.github.alexmofer.android:support:2.1.0'
+    implementation 'io.github.alexmofer.android:support:2.4.0'
     implementation 'com.github.bumptech.glide:glide:5.0.5'
     annotationProcessor 'com.github.bumptech.glide:compiler:5.0.5'
     // OpenCV

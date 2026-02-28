@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
 import io.github.alexmofer.android.support.other.StringResource;
-import io.github.alexmofer.android.support.widget.AvoidArea;
+import io.github.alexmofer.android.support.window.AvoidAreaCalculator;
+import io.github.alexmofer.android.support.window.AvoidAreaCalculatorViewModel;
 import io.github.alexmofer.documentskewcorrection.app.activities.main.common.MainCommonFragment;
 import io.github.alexmofer.documentskewcorrection.app.databinding.FragmentMainDcBinding;
 
@@ -36,8 +38,13 @@ public abstract class MainDCFragment extends MainCommonFragment<MainDCViewModel>
                              @Nullable Bundle savedInstanceState) {
         final FragmentMainDcBinding binding =
                 FragmentMainDcBinding.inflate(getLayoutInflater(), container, false);
-        AvoidArea.paddingIgnoreBottom(binding.fmaVToolbar);
-        AvoidArea.paddingIgnoreTop(binding.fmaVContent);
+        final AvoidAreaCalculator calculator =
+                AvoidAreaCalculatorViewModel.getInstance(requireActivity()).getCalculator();
+        calculator.calculate(getViewLifecycleOwner(), WindowInsetsCompat.Type.systemBars(),
+                AvoidAreaCalculator.ALL, (start, top, end, bottom) -> {
+                    binding.fmaVToolbar.setPadding(start, top, end, 0);
+                    binding.fmaVContent.setPadding(start, 0, end, bottom);
+                });
         binding.fmaVToolbar.setTitle(getTitle());
         binding.fmaVToolbar.setNavigationOnClickListener(
                 v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
