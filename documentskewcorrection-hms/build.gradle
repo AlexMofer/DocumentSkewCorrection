@@ -5,7 +5,9 @@ plugins {
 android {
     namespace 'io.github.alexmofer.documentskewcorrection.hms'
     compileSdk {
-        version = release(36)
+        version = release(37) {
+            minorApiLevel = 0
+        }
     }
 
     defaultConfig {
@@ -33,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.annotation:annotation:1.10.0'
     api project(path: ':documentskewcorrection-core')
 //    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.1.0'
     compileOnly 'com.huawei.hms:ml-computer-vision-documentskew:3.11.0.301'

@@ -4,7 +4,11 @@ plugins {
 
 android {
     namespace 'io.github.alexmofer.documentskewcorrection.ui'
-    compileSdkVersion 36
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 0
+        }
+    }
 
     defaultConfig {
         minSdkVersion 24

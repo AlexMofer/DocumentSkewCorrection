@@ -4,12 +4,16 @@ plugins {
 
 android {
     namespace 'io.github.alexmofer.documentskewcorrection.app'
-    compileSdkVersion 36
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 0
+        }
+    }
 
     defaultConfig {
         applicationId namespace
         minSdk 26
-        targetSdk 36
+        targetSdk 37
         versionCode 1
         versionName "1.0"
 
@@ -34,13 +38,13 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.activity:activity:1.12.4'
+    implementation 'androidx.activity:activity:1.13.0'
     implementation 'androidx.navigation:navigation-fragment:2.9.7'
     implementation 'androidx.exifinterface:exifinterface:1.4.2'
-    implementation 'com.google.guava:guava:33.5.0-android'
+    implementation 'com.google.guava:guava:33.6.0-android'
     implementation 'io.github.alexmofer.android:support:2.4.0'
-    implementation 'com.github.bumptech.glide:glide:5.0.5'
-    annotationProcessor 'com.github.bumptech.glide:compiler:5.0.5'
+    implementation 'com.github.bumptech.glide:glide:5.0.7'
+    annotationProcessor 'com.github.bumptech.glide:compiler:5.0.7'
     // OpenCV
     implementation project(path: ':documentskewcorrection-opencv')
     // TensorFlow

@@ -5,7 +5,9 @@ plugins {
 android {
     namespace 'io.github.alexmofer.documentskewcorrection.core'
     compileSdk {
-        version = release(36)
+        version = release(37) {
+            minorApiLevel = 0
+        }
     }
 
     defaultConfig {
@@ -33,7 +35,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.annotation:annotation:1.9.1'
+    compileOnly 'androidx.annotation:annotation:1.10.0'
     compileOnly 'androidx.exifinterface:exifinterface:1.4.2'
 }
 
