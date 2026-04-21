@@ -37,7 +37,7 @@ android {
 dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.7.1'
     api project(path: ':documentskewcorrection-core')
-//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.1.0'
+//    api 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-core:5.1.1'
 }
 
 //apply from: "maven-central-aar.gradle"

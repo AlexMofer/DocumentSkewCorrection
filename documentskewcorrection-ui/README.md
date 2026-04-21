@@ -14,7 +14,7 @@ DocumentSkewCorrection-UI
 dependencies {
     ...
     implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-ui:2.1.0'
+    implementation 'io.github.alexmofer.documentskewcorrection:documentskewcorrection-ui:2.1.1'
     ...
 }
 ```
