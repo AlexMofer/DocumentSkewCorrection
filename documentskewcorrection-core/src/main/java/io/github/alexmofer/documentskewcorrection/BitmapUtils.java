@@ -32,7 +32,7 @@ import java.io.InputStream;
  * io.github.alexmofer.android.support.utils.BitmapUtils
  * Created by Alex on 2025/12/17.
  */
-public final class BitmapUtils {
+final class BitmapUtils {
 
     private BitmapUtils() {
         //no instance

@@ -16,6 +16,10 @@
 package io.github.alexmofer.documentskewcorrection;
 
 import android.graphics.Point;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 
 import java.util.Objects;
 
@@ -23,7 +27,18 @@ import java.util.Objects;
  * 检测点
  * Created by Alex on 2025/12/16.
  */
-public final class DocumentSkewCorrectionPoints {
+public final class DocumentSkewCorrectionPoints implements Parcelable {
+    public static final Creator<DocumentSkewCorrectionPoints> CREATOR = new Creator<>() {
+        @Override
+        public DocumentSkewCorrectionPoints createFromParcel(Parcel in) {
+            return new DocumentSkewCorrectionPoints(in);
+        }
+
+        @Override
+        public DocumentSkewCorrectionPoints[] newArray(int size) {
+            return new DocumentSkewCorrectionPoints[size];
+        }
+    };
     public static final int POINT_NONE = 0;
     public static final int POINT_LT = 1;
     public static final int POINT_RT = 2;
@@ -59,9 +74,15 @@ public final class DocumentSkewCorrectionPoints {
         mPoints[7] = points.mPoints[7];
     }
 
-    static int adjustPoints(float[] points, int controlPoint, int w, int h,
-                            float ltx, float lty, float rtx, float rty,
-                            float lbx, float lby, float rbx, float rby) {
+    private DocumentSkewCorrectionPoints(Parcel in) {
+        in.readFloatArray(mPoints);
+        mWidth = in.readInt();
+        mHeight = in.readInt();
+    }
+
+    public static int adjustPoints(float[] points, int controlPoint, int w, int h,
+                                   float ltx, float lty, float rtx, float rty,
+                                   float lbx, float lby, float rbx, float rby) {
         if (controlPoint == POINT_LT) {
             // 变更左上点
             // 情况1：LT与LB连线与RT与RB连线出现交点，LT与RT互换
@@ -433,5 +454,17 @@ public final class DocumentSkewCorrectionPoints {
         DocumentSkewCorrectionPoints that = (DocumentSkewCorrectionPoints) o;
         return mWidth == that.mWidth && mHeight == that.mHeight
                 && Objects.deepEquals(mPoints, that.mPoints);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeFloatArray(mPoints);
+        dest.writeInt(mWidth);
+        dest.writeInt(mHeight);
     }
 }
